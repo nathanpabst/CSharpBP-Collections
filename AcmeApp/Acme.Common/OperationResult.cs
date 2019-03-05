@@ -4,19 +4,23 @@
     /// Provides a success flag and message 
     /// useful as a method return type.
     /// </summary>
-    public class OperationResult
+    
+        //changing OperationResult to a generic type by adding T to the class 
+        //generics allow us to build reusable, type-neutral classes
+    public class OperationResult<T>
     {
         public OperationResult()
         {
         }
 
-        public OperationResult(bool success, string message) : this()
+        public OperationResult(T result, string message) : this()
         {
-            this.Success = success;
+            this.Result = result;
             this.Message = message;
         }
 
-        public bool Success { get; set; }
+        //by using the generic this property can now apply to decimal, boolean, int, etc.
+        public T Result { get; set; }
         public string Message { get; set; }
     }
 
