@@ -5,8 +5,10 @@
     /// useful as a method return type.
     /// </summary>
     
-        //changing OperationResult to a generic type by adding T to the class 
-        //generics allow us to build reusable, type-neutral classes
+    //changing OperationResult to a generic type by adding the generic type parameter 'T' to the class 
+    //...the type will be defined when calling the class constructor
+    //benefit of using generics..we can write generalized reusable code that is type-safe, yet works with any data type
+    //generics allow us to build reusable, type-neutral classes
     public class OperationResult<T>
     {
         public OperationResult()
