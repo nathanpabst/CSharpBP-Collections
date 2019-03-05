@@ -17,8 +17,17 @@ namespace Acme.Biz
         public Product()
         {
             string[] colorOptions = { "Red", "Espresso", "White", "Navy" };
-             
+            for (int i = 0; i < colorOptions.Length; i++)
+            {
+                colorOptions[i] = colorOptions[i].ToLower();
+            }
+            foreach (var color in colorOptions)
+            {
+                Console.WriteLine($"The color is {color}");
+            }
+
             Console.WriteLine(colorOptions);
+            
 
         }
         public Product(int productId,
