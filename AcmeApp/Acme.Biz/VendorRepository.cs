@@ -32,7 +32,7 @@ namespace Acme.Biz
             return vendor;
         }
 
-        
+
         //a generic list can be any length and provides methods to easily add, insert, or remove elements from the list
         //declaring a generic list
         public List<Vendor> Retrieve()
@@ -61,24 +61,38 @@ namespace Acme.Biz
             }
 
             return vendors;
-
         }
 
-        public T RetrieveValue<T>(string sql, T defaultValue)
+        public Dictionary<string, Vendor> RetrieveWithKeys()
         {
-            T value = defaultValue;
-
-            return value;
+            var vendors = new Dictionary<string, Vendor>()
+            {
+                { "ABC Corp", new Vendor()
+                    { VendorId = 5, CompanyName = "ABC Corp", Email = "abc@abc.com" } },
+                { "XYZ Corp", new Vendor()
+                    { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" } }
+                };
+            Console.WriteLine(vendors);
+            return vendors;
         }
 
-        
-        public bool Save(Vendor vendor)
-        {
-            var success = true;
 
-            // Code that saves the vendor
 
-            return success;
+            public T RetrieveValue<T>(string sql, T defaultValue)
+            {
+                T value = defaultValue;
+
+                return value;
+            }
+
+
+            public bool Save(Vendor vendor)
+            {
+                var success = true;
+
+                // Code that saves the vendor
+
+                return success;
+            }
         }
     }
-}

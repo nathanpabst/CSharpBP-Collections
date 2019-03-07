@@ -14,8 +14,8 @@ namespace Acme.Biz
     public class Product
     {
         #region Constructors
-        public Product()
-        {
+        //public Product()
+        //{
             //var colorOptions = new List<string>();
             //colorOptions.Add("Red");
             //colorOptions.Add("Espresso");
@@ -25,11 +25,25 @@ namespace Acme.Biz
             //colorOptions.Remove("White");
 
             //using a collection initializer. more concise. 
-            var colorOptions = new List<string>() { "Red", "Espresso", "White", "Navy" };
-            Console.WriteLine(colorOptions);
+        //    var colorOptions = new List<string>() { "Red", "Espresso", "White", "Navy" };
+        //    Console.WriteLine(colorOptions);
+
+        //}
+
+        public Product()
+        {
+            //declare variable to hold a new instance of a dictionary and defining the key and value types
+            //using collection initializer to add key and value types more concisely. 
+            var states = new Dictionary<string, string>()
+            {
+                { "CA", "California" },
+                { "MO", "Missouri" },
+                { "CO", "Colorado" }
+            };
+           
+            Console.WriteLine(states);
 
         }
-
 
         public Product(int productId,
                         string productName,
