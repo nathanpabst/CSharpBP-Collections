@@ -8,6 +8,9 @@ namespace Acme.Biz
 {
     public class VendorRepository
     {
+        //add field to retain list of vendors
+        private List<Vendor> vendors;
+
         /// <summary>
         /// Retrieve one vendor.
         /// </summary>
@@ -29,6 +32,38 @@ namespace Acme.Biz
             return vendor;
         }
 
+        
+        //a generic list can be any length and provides methods to easily add, insert, or remove elements from the list
+        //declaring a generic list
+        public List<Vendor> Retrieve()
+        {
+            if (vendors == null)
+            {
+                //initialize new list of type Vendor
+                vendors = new List<Vendor>();
+
+                //populate the list
+                vendors.Add(new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@abc.com" });
+                vendors.Add(new Vendor() { VendorId = 2, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" });
+            }
+
+            //iterating through the list 
+            //use the for loop when iterating through a subset of the list or to modify the object instance 
+            for (int i = 0; i < vendors.Count; i++)
+            {
+                //Console.WriteLine(vendors[i]);
+            }
+
+            //simplest way to iterate through an entire list. an objects properties can be edited, but not the object instance
+            foreach (var vendor in vendors)
+            {
+                Console.WriteLine(vendor);
+            }
+
+            return vendors;
+
+        }
+
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
             T value = defaultValue;
@@ -36,11 +71,7 @@ namespace Acme.Biz
             return value;
         }
 
-        /// <summary>
-        /// Save data for one vendor.
-        /// </summary>
-        /// <param name="vendor">Instance of the vendor to save.</param>
-        /// <returns></returns>
+        
         public bool Save(Vendor vendor)
         {
             var success = true;

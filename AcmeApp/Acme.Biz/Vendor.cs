@@ -44,12 +44,12 @@ namespace Acme.Biz
                             "Quantity: " + quantity);
             if (deliverBy.HasValue)
             {
-                orderTextBuilder.Append( System.Environment.NewLine +
+                orderTextBuilder.Append(System.Environment.NewLine +
                             "Deliver By: " + deliverBy.Value.ToString("d"));
             }
             if (!String.IsNullOrWhiteSpace(instructions))
             {
-                orderTextBuilder.Append( System.Environment.NewLine +
+                orderTextBuilder.Append(System.Environment.NewLine +
                             "Instructions: " + instructions);
             }
             var orderText = orderTextBuilder.ToString();
@@ -70,6 +70,27 @@ namespace Acme.Biz
             return $"Vendor: {this.CompanyName} ({this.VendorId})";
         }
 
+        public override bool Equals(object obj)
+        {
+
+            if (obj == null || this.GetType() != obj.GetType())
+                return false;
+
+            Vendor compareVendor = obj as Vendor;
+            if (compareVendor != null &&
+                this.VendorId == compareVendor.VendorId &&
+                this.CompanyName == compareVendor.CompanyName &&
+                this.Email == compareVendor.Email)
+                return true;
+
+            return base.Equals(obj);
+
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         /// <summary>
         /// Sends an email to welcome a new vendor.
