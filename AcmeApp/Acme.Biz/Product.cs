@@ -16,23 +16,14 @@ namespace Acme.Biz
         #region Constructors
         public Product()
         {
-            //use arrays when working with a list whose length is defined at design time
-            string[] colorOptions = { "Red", "Espresso", "White", "Navy" };
-            //using static method IndexOf
-            var brownIndex = Array.IndexOf(colorOptions, "Espresso");
-            //using instance method SetValue
-            colorOptions.SetValue("Blue", 3);
-            //'for' provides more complex but flexible syntax for iterating ..ie ability to modify elements while iterating
-            for (int i = 0; i < colorOptions.Length; i++)
-            {
-                colorOptions[i] = colorOptions[i].ToLower();
-            }
-            //foreach provides simple syntax for iterating all elements in an array
-            foreach (var color in colorOptions)
-            {
-                Console.WriteLine($"The color is {color}");
-            }
-          
+            var colorOptions = new List<string>();
+            colorOptions.Add("Red");
+            colorOptions.Add("Espresso");
+            colorOptions.Add("White");
+            colorOptions.Add("Navy");
+            colorOptions.Insert(2, "Purple");
+            colorOptions.Remove("White");
+            Console.WriteLine(colorOptions);
         }
         public Product(int productId,
                         string productName,
