@@ -24,7 +24,7 @@ namespace Acme.Biz
             //colorOptions.Insert(2, "Purple");
             //colorOptions.Remove("White");
 
-            //using a collection initializer
+            //using a collection initializer. more concise. 
             var colorOptions = new List<string>() { "Red", "Espresso", "White", "Navy" };
             Console.WriteLine(colorOptions);
 
