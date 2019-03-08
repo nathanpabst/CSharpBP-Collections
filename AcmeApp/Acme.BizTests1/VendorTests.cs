@@ -32,5 +32,28 @@ namespace Acme.Biz.Tests
             //Assert
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void SendEmailTestArray()
+        {
+            //Arrange
+            //creating an instance of the VendorRepository
+            var vendorRepository = new VendorRepository();
+            //calling the Retrieve method to retrieve the vendors
+            var vendors = vendorRepository.RetrieveArray();
+            //define the expected result...2 messages 
+            var expected = new List<string>()
+            {
+                "Message sent: Important message for: ABC Corp",
+                "Message sent: Important message for: XYZ Corp",
+            };
+
+            //Act
+            //this code cannot convert the array to a list of vendors. need to change code in the vendor class from List to IList
+            var actual = Vendor.SendEmail(vendors, "Test message");
+
+            //Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
