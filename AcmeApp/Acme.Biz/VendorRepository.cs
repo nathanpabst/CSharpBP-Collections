@@ -72,18 +72,40 @@ namespace Acme.Biz
                 { "XYZ Corp", new Vendor()
                     { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" } }
                 };
-            Console.WriteLine(vendors["XYZ Corp"]);
+            //iterating through the elements and returning the key/value pairs. not a best practice
+            foreach (var element in vendors)
+            {
+                var vendor = element.Value;
+                var key = element.Key;
+                Console.WriteLine($"Key: { key } Value: {vendor}" );
+            }
+
+            //ex. of iterating through the vendors values. best practice
+            //foreach (var vendor in vendors.Values)
+            //{
+            //    Console.WriteLine(vendor);
+            //}
+
+            //example of iterating through the vendor keys. best practice
+            //foreach (var companyName in vendors.Keys)
+            //{
+            //    //itirating through the dictionary using the company name as the key
+            //    Console.WriteLine(vendors[companyName]);
+            //}
+
             //checking to see if the key exists
-            if (vendors.ContainsKey("XYZ"))
-            {
-                Console.WriteLine(vendors["XYZ"]);
-            }
-            //or...this code is more efficient because it doesn't have to look up the key twice
-            Vendor vendor;
-            if (vendors.TryGetValue("XYZ", out vendor))
-            {
-                Console.WriteLine(vendor);
-            }
+
+            //if (vendors.ContainsKey("XYZ"))
+            //{
+            //    Console.WriteLine(vendors["XYZ"]);
+            //}
+            ////or...this code is more efficient because it doesn't have to look up the key twice
+            //Vendor vendor;
+            //if (vendors.TryGetValue("XYZ", out vendor))
+            //{
+            //    Console.WriteLine(vendor);
+            //}
+
 
             return vendors;
         }
