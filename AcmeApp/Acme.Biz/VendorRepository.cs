@@ -32,6 +32,17 @@ namespace Acme.Biz
             return vendor;
         }
 
+        public Vendor[] RetrieveArray()
+        {
+            var vendors = new Vendor[2]
+                {
+                    new Vendor()
+                        { VendorId = 5, CompanyName = "ABC Corp", Email = "abc@abc.com" },
+                    new Vendor()
+                        { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" },
+                };
+            return vendors;
+        }
 
         //a generic list can be any length and provides methods to easily add, insert, or remove elements from the list
         //declaring a generic list
@@ -62,7 +73,7 @@ namespace Acme.Biz
 
             return vendors;
         }
-
+          
         public Dictionary<string, Vendor> RetrieveWithKeys()
         {
             //initializing a dictionary of objects

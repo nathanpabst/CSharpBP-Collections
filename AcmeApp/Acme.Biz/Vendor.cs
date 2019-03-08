@@ -92,6 +92,22 @@ namespace Acme.Biz
             return base.GetHashCode();
         }
 
+        public static List<string> SendEmail(List<Vendor> vendors, string message)
+        {
+            var confirmations = new List<string>();
+            var emailService = new EmailService();
+            Console.WriteLine(vendors.Count);
+            foreach (var vendor in vendors)
+            {
+                var subject = "Important message for: " + vendor.CompanyName;
+                var confirmation = emailService.SendMessage(subject,
+                                                            message,
+                                                            vendor.Email);
+                confirmations.Add(confirmation);
+            }
+            return confirmations;
+        }
+
         /// <summary>
         /// Sends an email to welcome a new vendor.
         /// </summary>
