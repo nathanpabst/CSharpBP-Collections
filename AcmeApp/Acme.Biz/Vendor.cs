@@ -92,7 +92,9 @@ namespace Acme.Biz
             return base.GetHashCode();
         }
 
-        public static List<string> SendEmail(IList<Vendor> vendors, string message)
+        //example of using an Interface as a parameter
+        //changing SendEmail parameter to the ICollection interface allows us to accept a generic list, array, and values from a dictionary..making the method more generalized.
+        public static List<string> SendEmail(ICollection<Vendor> vendors, string message)
         {
             var confirmations = new List<string>();
             var emailService = new EmailService();
