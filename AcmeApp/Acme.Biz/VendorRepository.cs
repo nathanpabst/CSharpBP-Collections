@@ -32,10 +32,9 @@ namespace Acme.Biz
             return vendor;
         }
 
-
-        //a generic list can be any length and provides methods to easily add, insert, or remove elements from the list
-        //declaring a generic list
-        public List<Vendor> Retrieve()
+        //using an interface as a return type allows us to delete the RetrieveArray and RetrieveWithKeys methods & unit tests
+        //..making the Retrieve method much more flexible and generalized
+        public ICollection<Vendor> Retrieve()
         {
             if (vendors == null)
             {
@@ -47,14 +46,6 @@ namespace Acme.Biz
                 vendors.Add(new Vendor() { VendorId = 2, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" });
             }
 
-            //iterating through the list 
-            //use the for loop when iterating through a subset of the list or to modify the object instance 
-            for (int i = 0; i < vendors.Count; i++)
-            {
-                //Console.WriteLine(vendors[i]);
-            }
-
-            //simplest way to iterate through an entire list. an objects properties can be edited, but not the object instance
             foreach (var vendor in vendors)
             {
                 Console.WriteLine(vendor);
@@ -62,57 +53,7 @@ namespace Acme.Biz
 
             return vendors;
         }
-
-        public Dictionary<string, Vendor> RetrieveWithKeys()
-        {
-            //initializing a dictionary of objects
-            var vendors = new Dictionary<string, Vendor>()
-            {
-                { "ABC Corp", new Vendor()
-                    { VendorId = 5, CompanyName = "ABC Corp", Email = "abc@abc.com" } },
-                { "XYZ Corp", new Vendor()
-                    { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" } }
-                };
-            //iterating through the elements and returning the key/value pairs. not a best practice
-            //foreach (KeyValuePair<string, Vendor> element in vendors)
-            //{
-            //    var vendor = element.Value;
-            //    var key = element.Key;
-            //    Console.WriteLine($"Key: { key } Value: {vendor}" );
-            //}
-
-            //ex. of iterating and retrieving the vendors values. best practice
-            foreach (var vendor in vendors.Values)
-            {
-                Console.WriteLine(vendor);
-            }
-
-            //example of iterating through the vendor keys. best practice
-            //foreach (var companyName in vendors.Keys)
-            //{
-            //    //itirating through the dictionary using the company name as the key
-            //    Console.WriteLine(vendors[companyName]);
-            //}
-
-            //checking to see if the key exists
-
-            //if (vendors.ContainsKey("XYZ"))
-            //{
-            //    Console.WriteLine(vendors["XYZ"]);
-            //}
-            ////or...this code is more efficient because it doesn't have to look up the key twice
-            //Vendor vendor;
-            //if (vendors.TryGetValue("XYZ", out vendor))
-            //{
-            //    Console.WriteLine(vendor);
-            //}
-
-
-            return vendors;
-        }
-
-
-
+          
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
             T value = defaultValue;
