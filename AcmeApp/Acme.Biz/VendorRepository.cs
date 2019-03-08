@@ -65,6 +65,7 @@ namespace Acme.Biz
 
         public Dictionary<string, Vendor> RetrieveWithKeys()
         {
+            //initializing a dictionary of objects
             var vendors = new Dictionary<string, Vendor>()
             {
                 { "ABC Corp", new Vendor()
@@ -73,18 +74,18 @@ namespace Acme.Biz
                     { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" } }
                 };
             //iterating through the elements and returning the key/value pairs. not a best practice
-            foreach (var element in vendors)
-            {
-                var vendor = element.Value;
-                var key = element.Key;
-                Console.WriteLine($"Key: { key } Value: {vendor}" );
-            }
-
-            //ex. of iterating through the vendors values. best practice
-            //foreach (var vendor in vendors.Values)
+            //foreach (KeyValuePair<string, Vendor> element in vendors)
             //{
-            //    Console.WriteLine(vendor);
+            //    var vendor = element.Value;
+            //    var key = element.Key;
+            //    Console.WriteLine($"Key: { key } Value: {vendor}" );
             //}
+
+            //ex. of iterating and retrieving the vendors values. best practice
+            foreach (var vendor in vendors.Values)
+            {
+                Console.WriteLine(vendor);
+            }
 
             //example of iterating through the vendor keys. best practice
             //foreach (var companyName in vendors.Keys)
