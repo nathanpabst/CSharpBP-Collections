@@ -72,27 +72,39 @@ namespace Acme.Biz
                 { "XYZ Corp", new Vendor()
                     { VendorId = 8, CompanyName = "XYZ Corp", Email = "xyz@xyz.com" } }
                 };
-            Console.WriteLine(vendors);
+            Console.WriteLine(vendors["XYZ Corp"]);
+            //checking to see if the key exists
+            if (vendors.ContainsKey("XYZ"))
+            {
+                Console.WriteLine(vendors["XYZ"]);
+            }
+            //or...this code is more efficient because it doesn't have to look up the key twice
+            Vendor vendor;
+            if (vendors.TryGetValue("XYZ", out vendor))
+            {
+                Console.WriteLine(vendor);
+            }
+
             return vendors;
         }
 
 
 
-            public T RetrieveValue<T>(string sql, T defaultValue)
-            {
-                T value = defaultValue;
+        public T RetrieveValue<T>(string sql, T defaultValue)
+        {
+            T value = defaultValue;
 
-                return value;
-            }
+            return value;
+        }
 
 
-            public bool Save(Vendor vendor)
-            {
-                var success = true;
+        public bool Save(Vendor vendor)
+        {
+            var success = true;
 
-                // Code that saves the vendor
+            // Code that saves the vendor
 
-                return success;
-            }
+            return success;
         }
     }
+}
