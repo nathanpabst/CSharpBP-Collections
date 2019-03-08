@@ -33,6 +33,7 @@ namespace Acme.Biz
         }
 
         //using an interface as a return type allows us to delete the RetrieveArray and RetrieveWithKeys methods & unit tests
+        //..making the Retrieve method much more flexible and generalized
         public ICollection<Vendor> Retrieve()
         {
             if (vendors == null)
