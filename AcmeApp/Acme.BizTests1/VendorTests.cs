@@ -35,35 +35,6 @@ namespace Acme.Biz.Tests
         }
 
         [TestMethod()]
-        public void SendEmailTestAdd()
-        {
-            //Arrange
-            var vendorRepository = new VendorRepository();
-
-            var vendorsCollection = vendorRepository.Retrieve();
-
-            vendorsCollection.Add(new Vendor()
-            { VendorId = 7, CompanyName = "EFG Ltd", Email = "efg@efg.com " });
-
-            var vendorMaster = vendorRepository.Retrieve();
-
-            var expected = new List<string>()
-            {
-                "Message sent: Important message for: ABC Corp",
-                "Message sent: Important message for: XYZ Corp",
-            };
-            //cast operation giving us the 'list' collection type
-            var vendors = vendorsCollection.ToList();
-            Console.WriteLine(vendors.Count);
-
-            //Act
-            var actual = Vendor.SendEmail(vendors, "Test message");
-
-            //Assert
-            CollectionAssert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
         public void SendEmailTestDictionary()
         {
             //Arrange
