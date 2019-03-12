@@ -32,9 +32,8 @@ namespace Acme.Biz
             return vendor;
         }
 
-        //using an interface as a return type allows us to delete the RetrieveArray and RetrieveWithKeys methods & unit tests
-        //..making the Retrieve method much more flexible and generalized
-        public ICollection<Vendor> Retrieve()
+        //changing the return type to IEnumerable to restrict the caller from adding/removing (ie an immutable collection) from the collection
+        public IEnumerable<Vendor> Retrieve()
         {
             if (vendors == null)
             {
@@ -53,7 +52,23 @@ namespace Acme.Biz
 
             return vendors;
         }
-          
+
+        public IEnumerable<Vendor> RetrieveWithIterator()
+        {
+            // get data from the database
+            this.Retrieve();
+
+            foreach (var vendor in vendors)
+            {
+                Console.WriteLine($"Vendor Id: {vendor.VendorId}");
+                //yield return listed below provides example of deferred execution...use an iterator for deferred execution. DE: when evaluation of an expression (such as a method call) is delayed until its value is required. 
+                //...don't use DE if it is not required and the method always returns an entire list
+                //and... lazy evaluation...method will return one element at a time.  
+                yield return vendor;
+            }
+
+        }
+
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
             T value = defaultValue;
