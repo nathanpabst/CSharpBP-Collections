@@ -98,20 +98,24 @@ namespace Acme.Biz.Tests
             //                  where v.CompanyName.Contains("Toy")
             //                  orderby v.CompanyName
             //                  select v;
+            // USING METHOD SYNTAX
+            //var vendorQuery = vendors.Where(FilterCompanies)
+            //    .OrderBy(OrderCompaniesByName);
 
-            //USING METHOD SYNTAX
-            var vendorQuery = vendors.Where(FilterCompanies)
-                .OrderBy(OrderCompaniesByName);
+            //USING METHOD SYNTAX AND PASSING LAMBDA EXPRESSIONS...eliminates the private methods below
+
+            var vendorQuery = vendors.Where(v => v.CompanyName.Contains("Toys"))
+                .OrderBy(v => v.CompanyName);
 
             //Assert
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
         }
 
         //using lambda expression to create a delegate
-        private bool FilterCompanies(Vendor v) =>
-             v.CompanyName.Contains("Toys");
+        //private bool FilterCompanies(Vendor v) =>
+        //     v.CompanyName.Contains("Toys");
 
-        private string OrderCompaniesByName(Vendor v) => v.CompanyName;
+        //private string OrderCompaniesByName(Vendor v) => v.CompanyName;
         
 
         [TestMethod()]
