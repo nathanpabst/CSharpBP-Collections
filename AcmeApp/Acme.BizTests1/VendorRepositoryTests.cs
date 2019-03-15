@@ -98,12 +98,12 @@ namespace Acme.Biz.Tests
             //                  where v.CompanyName.Contains("Toy")
             //                  orderby v.CompanyName
             //                  select v;
-            // USING METHOD SYNTAX
+            // USING METHOD SYNTAX WITH METHOD NAMES (ie FilterCompanies & OrderCompaniesByName)
             //var vendorQuery = vendors.Where(FilterCompanies)
             //    .OrderBy(OrderCompaniesByName);
 
+            //lambda expression = a method that can be passed as an argument to a method when that arg expects a delegate type
             //USING METHOD SYNTAX AND PASSING LAMBDA EXPRESSIONS...eliminates the private methods below
-
             var vendorQuery = vendors.Where(v => v.CompanyName.Contains("Toys"))
                 .OrderBy(v => v.CompanyName);
 
@@ -111,7 +111,9 @@ namespace Acme.Biz.Tests
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
         }
 
-        //using lambda expression to create a delegate
+        //delegate is a data type that represents a reference to a method with a specific parameter list and return type. 
+        //delegates are used to pass methods as arguments to other methods
+        //example of using a lambda expression to create a delegate
         //private bool FilterCompanies(Vendor v) =>
         //     v.CompanyName.Contains("Toys");
 
