@@ -94,14 +94,25 @@ namespace Acme.Biz.Tests
             //Act
             var vendors = repository.RetrieveAll();
             // USING QUERY SYNTAX
-            var vendorQuery = from v in vendors
-                              where v.CompanyName.Contains("Toy")
-                              orderby v.CompanyName
-                              select v;
+            //var vendorQuery = from v in vendors
+            //                  where v.CompanyName.Contains("Toy")
+            //                  orderby v.CompanyName
+            //                  select v;
+
+            //USING METHOD SYNTAX
+            var vendorQuery = vendors.Where(FilterCompanies)
+                .OrderBy(OrderCompaniesByName);
 
             //Assert
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
         }
+
+        //using lambda expression to create a delegate
+        private bool FilterCompanies(Vendor v) =>
+             v.CompanyName.Contains("Toys");
+
+        private string OrderCompaniesByName(Vendor v) => v.CompanyName;
+        
 
         [TestMethod()]
         public void RetrieveWithIteratorTest()
